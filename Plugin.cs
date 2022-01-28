@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using HarmonyLib;
 
 namespace TaikoTitleFix
 {
@@ -7,7 +8,9 @@ namespace TaikoTitleFix
     {
         private void Awake()
         {
-            // Plugin startup logic
+            var instance = new Harmony(PluginInfo.PLUGIN_NAME);
+            instance.PatchAll(typeof(TitleFix));
+
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }
     }
